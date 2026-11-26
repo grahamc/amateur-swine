@@ -38,15 +38,6 @@ if [ ! -s "$secrets/initrd/zfs-key-url" ]; then
   exit 1
 fi
 
-# The password for grahamc, for sudo and for the local console.
-if [ ! -s "$secrets/grahamc.passwd" ]; then
-  echo "Type a password for grahamc."
-  until hash=$(mkpasswd -m yescrypt) && [ -n "$hash" ]; do
-    echo "Try again."
-  done
-  (umask 077 && printf '%s\n' "$hash" > "$secrets/grahamc.passwd")
-fi
-
 nixos-install --system "$TOPLEVEL" --no-root-passwd --no-channel-copy
 
 echo

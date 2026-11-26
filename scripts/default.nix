@@ -6,7 +6,6 @@
   dosfstools,
   gawk,
   gptfdisk,
-  mkpasswd,
   openssh,
   parted,
   systemd,
@@ -35,7 +34,6 @@
     name = "install-system";
     runtimeInputs = [
       coreutils
-      mkpasswd
       openssh
       systemd
       util-linux

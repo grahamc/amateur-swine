@@ -8,6 +8,12 @@
 
   services.greetd = {
     enable = true;
+    # grahamc has no password, so start Hyprland for grahamc at boot.
+    # After a logout, restart greetd to log in again.
+    settings.initial_session = {
+      user = "grahamc";
+      command = "${config.programs.hyprland.package}/bin/start-hyprland";
+    };
     settings.default_session.command = builtins.concatStringsSep " " [
       "${pkgs.tuigreet}/bin/tuigreet"
       "--time"

@@ -10,10 +10,12 @@
       "video"
       "input"
     ];
-    # install-system writes this file with mkpasswd.
-    hashedPasswordFile = "/persist/etc/secrets/grahamc.passwd";
+    # No password: log in with an SSH key, or with the greetd automatic login.
     openssh.authorizedKeys.keys = import ../../lib/ssh-keys.nix;
   };
+
+  # grahamc has no password, so sudo must not ask for one.
+  security.sudo.wheelNeedsPassword = false;
 
   # Lock root.
   users.users.root.hashedPassword = "!";

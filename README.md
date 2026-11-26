@@ -22,7 +22,7 @@ It boots next to Windows.
 | `hosts/amateur-swine/impermanence.nix` | The paths kept on `/persist`. |
 | `installer/` | The installer image. It contains the complete system, so installation needs no network. |
 | `scripts/prepare-disk.sh` | Partitions the free space, makes the pool, and mounts it at `/mnt`. |
-| `scripts/install-system.sh` | Makes host keys and the password, then runs `nixos-install`. |
+| `scripts/install-system.sh` | Makes host keys, then runs `nixos-install`. |
 
 ## Disk layout
 
@@ -126,7 +126,8 @@ To change the passphrase, run `sudo zfs change-key rpool`, and update the gist t
    install-system
    ```
 
-   It asks for a password for `grahamc`.
+   `grahamc` has no password: use an SSH key.
+   `sudo` does not ask for a password, and greetd starts Hyprland for `grahamc` at boot.
    It shows the SSH host key fingerprints at the end.
    Record them.
 8. Unmount, export the pool, remove the flash drive, and reboot:
