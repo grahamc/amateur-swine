@@ -3,6 +3,7 @@
 {
   config,
   inputs,
+  lib,
   modulesPath,
   pkgs,
   ...
@@ -22,7 +23,7 @@ in
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
-  image.baseName = "amateur-swine-installer";
+  image.baseName = lib.mkForce "amateur-swine-installer";
   isoImage.storeContents = [ toplevel ];
 
   boot.supportedFilesystems.zfs = true;

@@ -8,16 +8,11 @@
 #      systemd-tty-ask-password-agent
 #
 # The URL is not in this repository.
-# install-system writes it to /persist/etc/secrets/initrd/zfs-key-url,
+# prepare-disk writes it to /persist/etc/secrets/initrd/zfs-key-url,
 # and the bootloader installation copies it into the initrd.
 # Anyone who can read the boot partition can read the URL.
 # If someone steals the machine, delete the gist.
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 let
   sshKeys = import ../../lib/ssh-keys.nix;
   cacert = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
@@ -57,6 +52,7 @@ in
       requires = [ "zfs-import-rpool.service" ];
       after = [
         "zfs-import-rpool.service"
+        "systemd-tmpfiles-setup.service"
         "systemd-networkd.service"
         "systemd-resolved.service"
       ];
@@ -99,7 +95,4 @@ in
       '';
     };
   };
-
-  # Resolve DNS in the initrd, for the URL's host name.
-  boot.initrd.services.resolved.enable = lib.mkDefault true;
 }
