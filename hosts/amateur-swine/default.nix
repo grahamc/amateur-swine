@@ -4,6 +4,7 @@
     inputs.determinate.nixosModules.default
     inputs.nixos-hardware.nixosModules.dell-xps-13-9300
     inputs.impermanence.nixosModules.impermanence
+    inputs.home-manager.nixosModules.home-manager
     inputs.rex.nixosModules.default
 
     ./hardware.nix
@@ -15,6 +16,7 @@
     ./desktop.nix
     ./rex.nix
     ./users.nix
+    ./home.nix
   ];
 
   networking.hostName = "amateur-swine";

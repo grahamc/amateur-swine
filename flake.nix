@@ -12,6 +12,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # FlakeHub has only the home-manager release branches.
+    # Secure Packages rolling is nixpkgs master, so use home-manager master.
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     impermanence = {
       url = "https://flakehub.com/f/nix-community/impermanence/*";
       inputs.nixpkgs.follows = "nixpkgs";
