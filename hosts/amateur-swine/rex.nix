@@ -1,15 +1,23 @@
 # Rex login server.
 # Tailscale identifies the person who connects.
-# Change the principal if your tailnet login is not grahamc@github.
+# The work tailnet reaches this machine through a Tailscale machine share.
 { ... }:
 let
-  me = "tailscale:grahamc@github";
+  principals = [
+    "tailscale:grahamc@github"
+    "tailscale:graham@determinate.systems"
+  ];
 in
 {
   services.rex.loginServer = {
     enable = true;
-    accounts.grahamc.principals = [ me ];
-    defaults.${me} = "grahamc";
+    accounts.grahamc = { inherit principals; };
+    defaults = builtins.listToAttrs (
+      map (p: {
+        name = p;
+        value = "grahamc";
+      }) principals
+    );
     tailscaleServe.enable = true;
   };
 }
