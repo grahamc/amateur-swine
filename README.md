@@ -10,7 +10,7 @@ It boots next to Windows.
 - Erase your darlings: `/` rolls back to an empty snapshot at each boot.
   `/nix`, `/home`, and `/persist` stay.
 - Remote access: SSH, Tailscale, and a Rex login server.
-- Desktop: Hyprland, with greetd at the console and wayvnc for remote use.
+- Desktop: Hyprland (Lua configuration from home-manager), with greetd at the console and wayvnc for remote use.
 
 ## Layout
 
@@ -185,6 +185,17 @@ After a reboot, someone must log in at the console again.
 
 Connect a VNC client to `amateur-swine:5900` over the tailnet.
 The firewall blocks port 5900 on the LAN.
+
+## TinyPilot
+
+A TinyPilot KVM gives remote access to the BIOS, the boot menu, the passphrase prompt, and the Hyprland login.
+
+- Connect a plain USB-C hub (not a Thunderbolt dock) with HDMI, Ethernet, USB-A, and power pass-through.
+- HDMI from the hub goes to the TinyPilot, and the TinyPilot USB cable goes to the hub.
+- The initrd has `usbhid` and early `i915`, so the keyboard and display work at the passphrase prompt.
+- When the lid is closed, Hyprland turns off the internal screen (`home/grahamc.nix`), so the TinyPilot display is the only display.
+- The TinyPilot cannot press the power button of a laptop.
+  Use `reboot`, not `poweroff`.
 
 ## Things to keep on `/persist`
 
