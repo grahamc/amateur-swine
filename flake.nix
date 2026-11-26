@@ -2,7 +2,9 @@
   description = "amateur-swine: a Dell XPS 13 9300 that lives in a rack";
 
   inputs = {
-    nixpkgs.url = "https://flakehub.com/f/DeterminateSystems/secure-packages-rolling/0";
+    # nixos-unstable is in cache.nixos.org, so CI builds little.
+    # The secure-packages branch switches to Determinate Secure Packages rolling.
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
 
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
