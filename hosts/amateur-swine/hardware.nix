@@ -20,8 +20,6 @@
   ];
   boot.kernelModules = [ "kvm-intel" ];
 
-  boot.initrd.systemd.enable = true;
-
   # Windows owns the EFI system partition, and it is small.
   # systemd-boot goes in the ESP, and the kernels and initrds go in a separate XBOOTLDR partition.
   # prepare-disk makes the XBOOTLDR partition and sets the partition labels.
