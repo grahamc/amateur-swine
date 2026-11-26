@@ -7,6 +7,10 @@ in
 
   home.packages = [
     pkgs.claude-code
+    pkgs.gh
+    pkgs.git
+    pkgs.jujutsu
+    pkgs.tmux
   ];
 
   wayland.windowManager.hyprland = {
