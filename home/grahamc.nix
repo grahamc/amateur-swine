@@ -9,7 +9,6 @@ in
     pkgs.claude-code
     pkgs.gh
     pkgs.git
-    pkgs.tmux
   ];
 
   programs.jujutsu = {
