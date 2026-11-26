@@ -4,6 +4,14 @@
 # The firewall lets only the tailnet reach port 5900.
 { config, pkgs, ... }:
 {
+  # The xdg-desktop-portal 1.22.1 notification tests fail in the build sandbox.
+  # Secure Packages does not cache it, so CI must build it.
+  nixpkgs.overlays = [
+    (final: prev: {
+      xdg-desktop-portal = prev.xdg-desktop-portal.overrideAttrs { doCheck = false; };
+    })
+  ];
+
   programs.hyprland.enable = true;
 
   services.greetd = {
