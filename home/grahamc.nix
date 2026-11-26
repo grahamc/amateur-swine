@@ -1,9 +1,13 @@
-{ osConfig, ... }:
+{ osConfig, pkgs, ... }:
 let
   hyprland = osConfig.programs.hyprland.package;
 in
 {
   home.stateVersion = "26.11";
+
+  home.packages = [
+    pkgs.claude-code
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
