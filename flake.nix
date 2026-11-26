@@ -6,9 +6,17 @@
 
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
-    nixos-hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/*";
+    # The FlakeHub copy of nixos-hardware stopped updating in October 2025.
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    impermanence.url = "https://flakehub.com/f/nix-community/impermanence/*";
+    impermanence = {
+      url = "https://flakehub.com/f/nix-community/impermanence/*";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "";
+    };
 
     rex = {
       url = "https://pkgs.superlogical.com/rex/nix/preview.tar.gz";
