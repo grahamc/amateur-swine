@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ inputs, ... }:
 {
   imports = [
     inputs.determinate.nixosModules.default
@@ -21,12 +21,7 @@
 
   networking.hostName = "amateur-swine";
 
-  # Allow only the unfree packages named here.
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "claude-code"
-    ];
+  nixpkgs.config.allowUnfree = true;
 
   time.timeZone = "UTC";
 
