@@ -9,9 +9,16 @@ in
     pkgs.claude-code
     pkgs.gh
     pkgs.git
-    pkgs.jujutsu
     pkgs.tmux
   ];
+
+  programs.jujutsu = {
+    enable = true;
+    settings.user = {
+      name = "Graham Christensen";
+      email = "graham@grahamc.com";
+    };
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
